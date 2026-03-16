@@ -1,3 +1,4 @@
+import esphome
 import esphome.config_validation as cv
 from esphome.const import CONF_ID
 from esphome.cpp_types import Component
@@ -12,6 +13,7 @@ CONF_ON_COUNTER_CLOCKWISE = "on_counter_clockwise"
 
 DEPENDENCIES = ["i2c"]
 
+# Correctly reference the namespace
 dfrobot_visual_encoder_ns = esphome.codegen.namespace('dfrobot_visual_encoder')
 DFRobotVisualEncoder = dfrobot_visual_encoder_ns.class_(
     'DFRobotVisualEncoder', Component, i2c.I2CDevice)
