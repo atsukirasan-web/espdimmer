@@ -1,9 +1,9 @@
-import esphome
 import esphome.config_validation as cv
 from esphome.const import CONF_ID
 from esphome.cpp_types import Component
 from esphome.components import i2c
 from esphome.cpp_generator import Pvariable, add
+import esphome.codegen as cg  # <- THIS IS NEW
 
 # Automation keys
 CONF_ON_PRESS = "on_press"
@@ -13,10 +13,11 @@ CONF_ON_COUNTER_CLOCKWISE = "on_counter_clockwise"
 
 DEPENDENCIES = ["i2c"]
 
-# Correctly reference the namespace
-dfrobot_visual_encoder_ns = esphome.codegen.namespace('dfrobot_visual_encoder')
+# Use cg instead of esphome.codegen
+dfrobot_visual_encoder_ns = cg.namespace('dfrobot_visual_encoder')
 DFRobotVisualEncoder = dfrobot_visual_encoder_ns.class_(
-    'DFRobotVisualEncoder', Component, i2c.I2CDevice)
+    'DFRobotVisualEncoder', Component, i2c.I2CDevice
+)
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(DFRobotVisualEncoder),
